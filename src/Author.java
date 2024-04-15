@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Author {
     private String authorName;
     private String authorSurname;
@@ -22,18 +24,21 @@ public class Author {
     }
 
     @Override
-    public boolean equals(Object comparisonAuthor) {
-        if (this.getClass() != comparisonAuthor.getClass()) {
+    public boolean equals(Object comparisonObject) {
+        if (this == comparisonObject) {
+            return true;
+        }
+        if (comparisonObject == null || getClass() != comparisonObject.getClass()) {
             return false;
         }
-        Author autр = (Author) comparisonAuthor;
-        return authorName.equals(autр);
+        Author auth = (Author) comparisonObject;
+        return Objects.equals(authorName, ((Author) comparisonObject).authorName) && Objects.equals(authorSurname, ((Author) comparisonObject).authorSurname);
 
     }
 
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(authorName);
+        return java.util.Objects.hash(authorName, authorSurname);
     }
 
 
